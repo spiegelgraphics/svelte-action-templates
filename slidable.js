@@ -1,5 +1,5 @@
 /**
- * Make HTML element slidable along horizontal or vertical axis.
+ * Make HTML element slidable controlling pointer position. Fires events delivering changing pointer position.
  * Adds event listeners to enable moving HTML elements.
  *
  * @fires  slidestart {x, y}

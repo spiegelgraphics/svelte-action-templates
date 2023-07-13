@@ -34,7 +34,7 @@ Fires `click_outside`, event.detail: `{clicked: [target of click], not_clicked: 
 
 ### [slidable](./slidable.js)
 
-Make an HTML element slidable along horizontal or vertical axis.
+Make an HTML element slidable using pointer position.
 `slidable` fires the events `slidestart`, `slide` and `slideend`,
 delivering information about the current pointer position (x, y, dx, dy, left, top). Set new x- or y-position within the event handler.
 Also control the limitation of the sliding zone here.
