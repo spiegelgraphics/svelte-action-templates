@@ -17,7 +17,9 @@ With uniform options, only one instance of the IntersectionObserver object is cr
 
 Params: `callback` (required), `rootMargin` (optional, default: "0px"), `thresholds` und `root`.
 
-`<div use:intersectonObserver={{callback: () => {}, rootMargin: "20px"}}>`
+```html
+<div use:intersectonObserver={{rootMargin: "20px", callback: () => {}}}>
+```
 
 
 ### [outsideClickable](./outsideClickable.js)
@@ -26,9 +28,24 @@ Capture click outside of element. Useful for closing dropdowns or tooltips.
 
 Fires `click_outside`, event.detail: `{clicked: [target of click], not_clicked: node`.
 
-`<div use:clickOutside on:click_outside={e => console.log(e)}>`
+```html
+<div use:clickOutside on:click_outside={e => console.log(e)}>
+```
 
+### [slidable](./slidable.js)
 
-### [Slidable](./slidable.js)
-
-Make an HTML element slidable along horizontal axis.
+Make an HTML element slidable along horizontal or vertical axis.
+`slidable` fires the events `slidestart`, `slide` and `slideend`,
+delivering information about the current pointer position (x, y, dx, dy, left, top). Set new x- or y-position within the event handler.
+Also control the limitation of the sliding zone here.
+```Javascript
+let pos = 0;
+function handleSlide(e) {
+  const newPos = pos + e.detail.dx;
+  pos = newPos;
+  e.target.style.transform = `translateX(${newPos}px)`;
+}
+```
+```html
+<div use:slidable on:slide={handleSlide}></div>
+```
