@@ -15,10 +15,27 @@ Set CSS variables from List (Object) on an element. Useful handling a bunch of v
 Observe intersection of an element with the viewport. Individual options possible for each element.
 With uniform options, only one instance of the IntersectionObserver object is created.
 
-Params: `callback` (required), `rootMargin` (optional, default: "0px"), `thresholds` und `root`.
+The config options correspond to those of the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) and are extended by the ‘callback’ parameter:<br>
+`callback` (type fn; required), `rootMargin`, `thresholds` und `root`.
+
+`buildThresholdList` is a small helper that takes a number of steps and returns an array of ratio values.
 
 ```html
-<div use:intersectonObserver={{rootMargin: "20px", callback: () => {}}}>
+<script>
+  import {buildThresholdList, intersectionObserver} from "$actions/intersectionObserver";
+  const options = {
+    rootMargin: "20px",
+    threshold: buildThresholdList(2),
+    callback: (entry, unobserve) => {
+      const {isIntersecting = false} = entry;
+      $isInView = isIntersecting;
+      // When observer is no longer needed, use method unobserve().
+      // Otherwise, if not used, delete the 2nd Parameter
+    }}
+  }
+</script>
+
+<div use:intersectonObserver={options}>...</div>
 ```
 
 
